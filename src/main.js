@@ -1,3 +1,5 @@
+import { getWeatherByCity } from "./apiService.js";
+
 const viewElems = {};
 
 const getDOMElems = id => {
@@ -5,8 +7,8 @@ const getDOMElems = id => {
 }
 
 const setupListeners = () => {
-    viewElems.searchInput.addEventListener('click', onClickSubmit)
-    viewElems.searchButton.addEventListener('keydown', onEnterSubmit)
+    viewElems.searchInput.addEventListener('keydown', onEnterSubmit);
+    viewElems.searchButton.addEventListener('click', onClickSubmit);
 }
 
 const connectHTMLElems = () => {  
@@ -33,7 +35,16 @@ const initializeApp = () =>{
     setupListeners();
 }
 
-const onClickSubmit = () => {};
-const onEnterSubmit = () => {};
+const onEnterSubmit = event => {
+    // console.log(event);
+    if(event.key === 'Enter'){
+        let query = viewElems.searchInput.value;
+        getWeatherByCity(query).then(data => console.log(data));
+    }
+};
 
-document.addEventListener('DOMContentLoaded', initializeApp)
+const onClickSubmit = () => {
+
+};
+
+document.addEventListener('DOMContentLoaded', initializeApp);
