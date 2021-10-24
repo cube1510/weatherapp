@@ -4,7 +4,16 @@ body {
   }
   
   h1 {
-    font-size: 300%;
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 1rem;
+    text-align: center;
   }
   
   main {
@@ -58,15 +67,26 @@ body {
   
   .weather-info__forecast-view {
     display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
   }
   
   .weather-info__city {
+    width: 30%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
   }
   
   .weather-info__btn-return {
     padding: 5px 25px;
     border: 2px solid black;
+    width: fit-content;
+  }
+
+  .weather_icon{
+    max-width: 1rem;
+    height: auto;
   }

@@ -43,9 +43,8 @@ const onEnterSubmit = event => {
         let query = viewElems.searchInput.value;
         getWeatherByCity(query)
         .then(data => {
-            console.log(data)
-            switchView();
-            fadeInOut();
+            // console.log(data)
+            displayWeatherData(data);
         });
         
     }
@@ -56,10 +55,29 @@ const onClickSubmit = () => {
     let query = viewElems.searchInput.value;
     getWeatherByCity(query)
     .then(data => {
-        console.log(data);
-        switchView();
-        fadeInOut();
+        // console.log(data);
+        displayWeatherData(data);
     });
+};
+
+const displayWeatherData = data => {
+    switchView();
+    fadeInOut();
+
+    const weather = data.consolidated_weather[0];
+
+    console.log(weather);
+
+    viewElems.weatherCity.innerText = data.title;
+    viewElems.weatherIcon.src = `https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`;
+    viewElems.weatherIcon.alt = `weather state: ${weather.weather_state_name}`;
+    const currentTemp = weather.the_temp.toFixed(2);
+    const maxTemp = weather.max_temp.toFixed(2);
+    const minTemp = weather.min_temp.toFixed(2);
+
+    viewElems.weatherCurrentTemp.innerText = `current temp: ${currentTemp}°C`;
+    viewElems.weatherMaxTemp.innerText = `max temp: ${maxTemp}°C`;
+    viewElems.weatherMinTemp.innerText = `min temp: ${minTemp}°C`;
 };
 
 const fadeInOut = () => {
