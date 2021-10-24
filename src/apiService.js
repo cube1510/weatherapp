@@ -9,4 +9,4 @@ export const getWeatherByCity = city => {
             // {return console.log(data2.time);})
         // console.log(data);
     });
-}
+};
