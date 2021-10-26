@@ -13,6 +13,7 @@ class WeatherApp {
     };
     
     conectDOMElements = () => {
+        // console.log(document.querySelectorAll('[id]'));
         const listOfIds = Array.from(document.querySelectorAll('[id]')).map(elem => elem.id);
         this.viewElems = mapListToDOMElements(listOfIds);
     };
@@ -23,7 +24,17 @@ class WeatherApp {
             let query = this.viewElems.searchInput.value;
             getWeatherByCity(query).then(data => {
                 this.displayWeatherData(data);
-            });
+                this.viewElems.searchInput.style.borderColor = 'black';
+                this.viewElems.searchInput.style.color = 'black';
+                this.viewElems.searchInput.value = '';
+                this.viewElems.errorText.innerText = '';
+            }).catch(() => {
+                this.fadeInOut();
+                this.viewElems.searchInput.style.borderColor = 'red';
+                this.viewElems.searchInput.style.color = 'red';
+                this.viewElems.searchInput.value = 'error';
+                this.viewElems.errorText.innerText = 'error';
+            })
         }
     };
 
